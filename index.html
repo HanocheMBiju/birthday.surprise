@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎉 Birthday Surprise 🎉</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Comic Sans MS', sans-serif;
+      background-color: #ffe6f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    #container {
+      position: relative;
+      width: 100%;
+      max-width: 500px;
+    }
+
+    #message {
+      color: #d1006c;
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 30px;
+    }
+
+    #gift-btn {
+      font-size: 80px;
+      border: none;
+      background: none;
+      cursor: pointer;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 20px;
+      animation: floatUp linear infinite;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(100%); opacity: 1; }
+      100% { transform: translateY(-150%); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="container">
+  <div id="message">Click the Gift 🎁</div>
+  <button id="gift-btn">🎁</button>
+</div>
+
+<audio id="song" src="birthday.wav"></audio>
+
+<script>
+  const giftBtn = document.getElementById('gift-btn');
+  const container = document.getElementById('container');
+  const message = document.getElementById('message');
+  const song = document.getElementById('song');
+
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.style.left = Math.random() * 90 + '%';
+    heart.style.fontSize = 12 + Math.random() * 20 + 'px';
+    heart.style.animationDuration = 3 + Math.random() * 2 + 's';
+    heart.innerText = '❤️';
+    container.appendChild(heart);
+    setTimeout(() => heart.remove(), 5000);
+  }
+
+  function animateHearts() {
+    setInterval(createHeart, 300);
+  }
+
+  giftBtn.addEventListener('click', () => {
+    message.innerHTML = `
+      🎉 HAPPY BIRTHDAY JULIA 🎉<br><br>
+      💖 You make every moment brighter 💖<br>
+      🥰❤️✨🌹🎂
+    `;
+    animateHearts();
+    song.play();
+    giftBtn.style.display = 'none';
+  });
+</script>
+
+</body>
+</html>
+
